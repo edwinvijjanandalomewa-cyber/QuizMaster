@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game 5 Detik</title>
+        <meta name="theme-color" content="#f5f4ec">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="brand-mark" aria-hidden="true">5<span>s</span></div>
+            <span class="brand-caption">PERMAINAN CEPAT</span>
+        </header>
+
+        <main class="page-shell">
+            <section class="intro" aria-labelledby="page-title">
+                <p class="eyebrow">SIAPKAN PIKIRANMU</p>
+                <h1 id="page-title">Game <span>5 Detik</span></h1>
+                <p class="intro-copy">Pikir cepat, jawab tepat.</p>
+                <p class="topic-badge"><span class="topic-label">TEMA SOAL</span><span id="theme-display" aria-live="polite">Pengetahuan Umum</span></p>
+            </section>
+
+            <section class="rules" aria-labelledby="rules-title">
+                <div class="rules-heading">
+                    <span class="section-index">01</span>
+                    <h2 id="rules-title">Aturan main</h2>
+                </div>
+                <ol class="rules-list">
+                    <li><span class="rule-number">1</span><span>Buat pertanyaan dan tentukan jawaban benarnya.</span></li>
+                    <li><span class="rule-number">2</span><span>Baca pertanyaan, lalu tunggu hitung mundur 5 detik.</span></li>
+                    <li><span class="rule-number">3</span><span>Jawab setelah waktu habis. Skor dihitung dari jawaban benar.</span></li>
+                </ol>
+            </section>
+
+            <section id="setup-screen" class="content-panel" aria-labelledby="setup-title">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">MULAI DARI SINI</p>
+                        <h2 id="setup-title">Siapkan permainan</h2>
+                    </div>
+                    <span class="step-tag">LANGKAH 1</span>
+                </div>
+
+                <form id="setup-form">
+                    <label class="field-label" for="quiz-theme">Tema soal</label>
+                    <input id="quiz-theme" class="text-input theme-input" name="quizTheme" type="text" maxlength="50" value="Pengetahuan Umum" placeholder="Contoh: Sains" required>
+
+                    <label class="field-label" for="player-name">Nama pemain</label>
+                    <input id="player-name" class="text-input name-input" name="playerName" type="text" maxlength="40" placeholder="Masukkan nama pemain" required>
+
+                    <div class="questions-heading">
+                        <div>
+                            <span class="field-label">Pertanyaan</span>
+                            <p class="field-hint">Tulis jawaban alternatif dengan pemisah koma.</p>
+                        </div>
+                        <button id="add-question" class="button button-secondary add-button" type="button"><span aria-hidden="true">+</span> Tambah soal</button>
+                    </div>
+                    <div id="question-list" class="question-list"></div>
+                    <p id="setup-feedback" class="form-feedback" role="alert" hidden></p>
+                    <button class="button button-primary start-button" type="submit">Mulai permainan <span aria-hidden="true">-&gt;</span></button>
+                </form>
+            </section>
+
+            <section id="game-screen" class="content-panel game-panel" aria-labelledby="game-question" hidden>
+                <div class="game-topline">
+                    <span id="question-progress" class="step-tag">SOAL 1 DARI 1</span>
+                    <span id="player-label" class="player-label"></span>
+                </div>
+                <div class="progress-track" aria-hidden="true"><span id="progress-fill"></span></div>
+                <p class="eyebrow game-eyebrow">DENGARKAN PERTANYAANNYA</p>
+                <h2 id="game-question" class="game-question"></h2>
+
+                <div id="countdown-block" class="countdown-block" aria-live="polite">
+                    <span class="countdown-label">BERSIAP</span>
+                    <span id="countdown-number" class="countdown-number">5</span>
+                    <span class="countdown-caption">detik</span>
+                </div>
+
+                <form id="answer-form" class="answer-form" hidden>
+                    <label class="field-label" for="player-answer">Sekarang, jawab!</label>
+                    <div class="answer-entry">
+                        <input id="player-answer" class="text-input" name="answer" type="text" autocomplete="off" placeholder="Ketik jawabanmu" required>
+                        <button class="button button-primary" type="submit">Kunci jawaban</button>
+                    </div>
+                </form>
+
+                <div id="answer-feedback" class="answer-feedback" aria-live="polite" hidden>
+                    <p id="feedback-message" class="feedback-message"></p>
+                    <p id="correct-answer" class="correct-answer"></p>
+                    <button id="continue-button" class="button button-primary" type="button">Soal berikutnya <span aria-hidden="true">-&gt;</span></button>
+                </div>
+            </section>
+
+            <section id="result-screen" class="content-panel result-panel" aria-labelledby="result-title" hidden>
+                <p class="eyebrow">PERMAINAN SELESAI</p>
+                <h2 id="result-title">Hasil <span id="result-player"></span></h2>
+                <div class="score-display">
+                    <strong id="score-fraction" class="score-fraction">0/0</strong>
+                    <span id="score-percent" class="score-percent">0%</span>
+                    <span class="score-caption">jawaban benar</span>
+                </div>
+                <div id="result-review" class="result-review" aria-label="Rincian jawaban"></div>
+                <div class="result-actions">
+                    <button id="edit-game" class="button button-secondary" type="button">Ubah soal</button>
+                    <button id="play-again" class="button button-primary" type="button">Main lagi <span aria-hidden="true">-&gt;</span></button>
+                </div>
+            </section>
+
+            <footer class="page-footer"><span>CEPAT BERPIKIR. BERANI MENJAWAB.</span><span>5 DETIK</span></footer>
+        </main>
+
+        <script src="sript.js"></script>
+    </body>
+</html>
